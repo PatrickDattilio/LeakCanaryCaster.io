@@ -1,6 +1,5 @@
 package io.caster.dattilio.leakcanary;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -22,12 +21,7 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-  @SuppressLint("StaticFieldLeak")
   void startAsyncTask() {
-
-    // This async task is an anonymous class and therefore has a hidden reference to the outer
-    // class MainActivity. If the activity gets destroyed before the task finishes (e.g. rotation),
-    // the activity instance will leak.
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
